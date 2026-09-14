@@ -1,0 +1,7 @@
+{
+  "name": "gaurav-pralina-wedding",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A responsive English and Nepali wedding invitation",
+  "scripts": { "start": "node server.cjs", "check": "node --check app.js && node --check settings.js && node --check server.cjs" }
+}
