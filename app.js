@@ -27,6 +27,7 @@
   const nepaliNumber = value => String(value).replace(/\d/g, digit => '०१२३४५६७८९'[Number(digit)]);
   const nepaliMonths = ['जनवरी', 'फेब्रुअरी', 'मार्च', 'अप्रिल', 'मे', 'जुन', 'जुलाई', 'अगस्ट', 'सेप्टेम्बर', 'अक्टोबर', 'नोभेम्बर', 'डिसेम्बर'];
   const nepaliWeekdays = ['आइतबार', 'सोमबार', 'मङ्गलबार', 'बुधबार', 'बिहीबार', 'शुक्रबार', 'शनिबार'];
+  const nepaliDate = config.nepaliDate;
   const format = (locale, options) => {
     if (locale !== 'ne-NP') return new Intl.DateTimeFormat(locale, { timeZone: 'UTC', ...options }).format(date);
     const parts = [];
@@ -34,6 +35,11 @@
     if (options.month) parts.push(nepaliMonths[date.getUTCMonth()]);
     if (options.year) parts.push(nepaliNumber(date.getUTCFullYear()));
     return (options.weekday ? nepaliWeekdays[date.getUTCDay()] + (parts.length ? ', ' : '') : '') + parts.join(' ');
+  };
+  const formatNepaliCalendarDate = includeWeekday => {
+    if (!nepaliDate) return '';
+    const value = `${nepaliNumber(nepaliDate.day)} ${nepaliDate.month} ${nepaliNumber(nepaliDate.year)}`;
+    return includeWeekday ? `${nepaliWeekdays[date.getUTCDay()]}, ${value}` : value;
   };
   function renderDate() {
     const full = document.querySelector('.date-full');
@@ -48,13 +54,14 @@
       document.querySelector('.calendar-note').hidden = true;
       return;
     }
-    const locale = language === 'ne' ? 'ne-NP' : 'en-GB';
+    const englishFullDate = format('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const nepaliFullDate = formatNepaliCalendarDate(true);
     full.dateTime = config.date;
-    full.replaceChildren(bilingual(format('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }), format('ne-NP', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })));
-    document.querySelector('.monogram small').textContent = `${config.date.slice(8)} · ${config.date.slice(5, 7)} · ${config.date.slice(2, 4)}`;
-    document.querySelector('.day-number').textContent = format(locale, { day: '2-digit' });
-    document.querySelector('.month-year').textContent = format(locale, { month: 'long', year: 'numeric' });
-    document.querySelector('.weekday').textContent = format(locale, { weekday: 'long' });
+    full.replaceChildren(bilingual(englishFullDate, nepaliFullDate));
+    document.querySelector('.monogram small').replaceChildren(bilingual(`${config.date.slice(8)} · ${config.date.slice(5, 7)} · ${config.date.slice(2, 4)}`, `${nepaliNumber(nepaliDate.day)} · ${nepaliNumber(String(nepaliDate.monthNumber).padStart(2, '0'))} · ${nepaliNumber(String(nepaliDate.year).slice(-2))}`));
+    document.querySelector('.day-number').replaceChildren(bilingual(nepaliNumber(date.getUTCDate()), nepaliNumber(nepaliDate.day)));
+    document.querySelector('.month-year').replaceChildren(bilingual(format('en-GB', { month: 'long', year: 'numeric' }), `${nepaliDate.month} ${nepaliNumber(nepaliDate.year)}`));
+    document.querySelector('.weekday').replaceChildren(bilingual(format('en-GB', { weekday: 'long' }), nepaliWeekdays[date.getUTCDay()]));
   }
   function renderTimes() {
     let allConfirmed = true;

@@ -12,13 +12,14 @@ Open `index.html` directly, or run `npm start` here and visit http://127.0.0.1:4
 
 Update `settings.js`:
 
-- `date`: Gregorian date in `YYYY-MM-DD` format. All visible dates and the calendar download update together. An empty or invalid date displays “Date to be announced” and hides the calendar download.
+- `date`: Gregorian date in `YYYY-MM-DD` format. All visible English dates and the calendar download update together. Set `nepaliDate` to the matching Bikram Sambat date for the Nepali display.
+- `nepaliDate`: Bikram Sambat date with `year`, Nepali `month`, numeric `monthNumber`, and `day`, such as `{ year: 2083, month: 'असोज', monthNumber: 6, day: 25 }`.
 - `venueName`: the venue name in `en` and `ne`. Leave blank until confirmed.
 - `location` and `address`: English and Nepali location text.
 - `mapsUrl`: an HTTPS venue map link. Directions remain hidden until provided.
 - `times`: ceremony times in 24-hour Nepal local time, such as `09:30`. Leave unconfirmed times blank.
 
-The supplied date (11 October 2026) is retained for you to edit. The Nepali spelling “प्रलिना” is provisional; adjust the text in index.html if needed. Nepali dates use Nepali numerals and Gregorian month names, not a Bikram Sambat conversion.
+The supplied date (11 October 2026 / असोज २५, २०८३) is retained for you to edit. The Nepali spelling “प्रलिना” is provisional; adjust the text in index.html if needed.
 
 ## Design and guest experience
 
