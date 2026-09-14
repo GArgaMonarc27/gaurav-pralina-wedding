@@ -17,7 +17,7 @@ Update `settings.js`:
 - `venueName`: the venue name in `en` and `ne`. Leave blank until confirmed.
 - `location` and `address`: English and Nepali location text.
 - `mapsUrl`: an HTTPS venue map link. Directions remain hidden until provided.
-- `times`: ceremony times in 24-hour Nepal local time, such as `09:30`. Leave unconfirmed times blank.
+- `times`: ceremony times in 24-hour Nepal local time, such as `09:30`. The invitation currently includes the planned schedule.
 
 The supplied date (11 October 2026 / असोज २५, २०८३) is retained for you to edit. The Nepali spelling “प्रलिना” is provisional; adjust the text in index.html if needed.
 
@@ -27,7 +27,7 @@ The invitation moves from a personal welcome to the couple’s photographs, the 
 
 Nepali is visible by default. Guests may choose English or Both, with their preference saved only on their device. Photographs support a larger view, arrow keys, swipe, Escape to close, and focus restoration. Photo entrance and scroll animations respect reduced-motion preferences; a pause control is also provided. No sound autoplays. The page includes a skip link, keyboard focus styles, semantic sections, lazy image loading, and print styles.
 
-The calendar download is an all-day event because no ceremony times were provided. Reimport it after changing the date; calendar applications differ in how they handle updates.
+The calendar download remains an all-day event for the wedding date. Reimport it after changing the date; calendar applications differ in how they handle updates.
 
 ## Share or host
 

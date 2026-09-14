@@ -27,6 +27,7 @@
   const nepaliNumber = value => String(value).replace(/\d/g, digit => '०१२३४५६७८९'[Number(digit)]);
   const nepaliMonths = ['जनवरी', 'फेब्रुअरी', 'मार्च', 'अप्रिल', 'मे', 'जुन', 'जुलाई', 'अगस्ट', 'सेप्टेम्बर', 'अक्टोबर', 'नोभेम्बर', 'डिसेम्बर'];
   const nepaliWeekdays = ['आइतबार', 'सोमबार', 'मङ्गलबार', 'बुधबार', 'बिहीबार', 'शुक्रबार', 'शनिबार'];
+  const nepaliMeridiem = value => Number(value.slice(0, 2)) < 12 ? 'बिहान' : 'दिउँसो';
   const nepaliDate = config.nepaliDate;
   const format = (locale, options) => {
     if (locale !== 'ne-NP') return new Intl.DateTimeFormat(locale, { timeZone: 'UTC', ...options }).format(date);
@@ -71,7 +72,7 @@
       if (/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(value)) {
         time.dateTime = value;
         const timeDate = new Date(`2000-01-01T${value}:00Z`);
-        time.textContent = language === 'ne' ? nepaliNumber(value) : new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' }).format(timeDate);
+        time.textContent = language === 'ne' ? `${nepaliMeridiem(value)} ${nepaliNumber(value)}` : new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' }).format(timeDate);
         time.title = language === 'ne' ? 'नेपालको स्थानीय समय' : 'Nepal local time';
       } else {
         time.removeAttribute('datetime');

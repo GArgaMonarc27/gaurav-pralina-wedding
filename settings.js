@@ -8,6 +8,6 @@ window.WEDDING = {
   address: { en: 'Bagmati Province, Nepal', ne: 'बागमती प्रदेश, नेपाल' },
   // Paste an HTTPS map link here once the venue is confirmed.
   mapsUrl: '',
-  // Use 24-hour Nepal local time (HH:MM), or leave blank until confirmed.
-  times: { janti: '', welcome: '', garlands: '', sindoor: '', feast: '' }
+  // Use 24-hour Nepal local time (HH:MM).
+  times: { feast: '11:00', janti: '11:30', welcome: '12:00', garlands: '12:30', sindoor: '13:30' }
 };
