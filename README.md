@@ -1,5 +1,7 @@
 # Gaurav & Pralina — wedding invitation
 
+https://gargamonarc27.github.io/gaurav-pralina-wedding/#memories
+
 A responsive invitation made from the photos and content in Main-html.zip and Mobile-html.zip. Plain HTML, CSS, and JavaScript; no installation or build is required.
 
 ## Preview
