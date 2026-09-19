@@ -1,5 +1,12 @@
 (() => {
   'use strict';
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    if (window.location.hash && window.location.hash !== '#home') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, { once: true });
   const config = window.WEDDING || {};
   const root = document.documentElement;
   const storage = {
@@ -70,9 +77,11 @@
       const value = config.times?.[row.dataset.event] || '';
       const time = row.querySelector('time');
       if (/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(value)) {
-        time.dateTime = value;
-        const timeDate = new Date(`2000-01-01T${value}:00Z`);
-        time.textContent = language === 'ne' ? `${nepaliMeridiem(value)} ${nepaliNumber(value)}` : new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' }).format(timeDate);
+        time.dateTime = `2000-01-01T${value}:00+05:45`;
+        const timeDate = new Date(`2000-01-01T${value}:00+05:45`);
+        time.textContent = language === 'ne'
+          ? `${nepaliMeridiem(value)} ${nepaliNumber(value)}`
+          : new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kathmandu' }).format(timeDate);
         time.title = language === 'ne' ? 'नेपालको स्थानीय समय' : 'Nepal local time';
       } else {
         time.removeAttribute('datetime');

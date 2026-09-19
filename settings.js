@@ -9,5 +9,5 @@ window.WEDDING = {
   // Paste an HTTPS map link here once the venue is confirmed.
   mapsUrl: '',
   // Use 24-hour Nepal local time (HH:MM).
-  times: { feast: '11:00', janti: '11:30', welcome: '12:00', garlands: '12:30', sindoor: '13:30' }
+  times: { janti: '11:00', welcome: '11:30', garlands: '12:00', sindoor: '12:30', feast: '13:30' }
 };
